@@ -39,7 +39,7 @@ public class CheckOrderView extends JFrame {
 
 
         //添加数量标签
-        JLabel totalAmount = new JLabel("购物车总数为：" + ShoppingCar.getShoppingCarInstance().getTotalPrice());
+        JLabel totalAmount = new JLabel("购物车总数为：" + ShoppingCar.getShoppingCarInstance().getAmount());
         container.add(totalAmount);
 
 
@@ -54,7 +54,7 @@ public class CheckOrderView extends JFrame {
                     ProductMenu[] mealsTemp = ShoppingCar.getShoppingCarInstance().getShoppingCar();
                     jList.setListData(mealsTemp);
                     totalPrice.setText("当前总共价格为：" + ShoppingCar.getShoppingCarInstance().getTotalPrice() + "￥");
-                    totalAmount.setText("购物车总数为：" + ShoppingCar.getShoppingCarInstance().getTotalPrice());
+                    totalAmount.setText("购物车总数为：" + ShoppingCar.getShoppingCarInstance().getAmount());
                 } else {
                     new MessageView("下单错误", "未选种商品");
                 }

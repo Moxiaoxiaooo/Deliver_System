@@ -66,7 +66,7 @@ public class ShoppingCarView extends JFrame {
                     jList.removeAll();
                     ProductMenu[] mealsTemp = ShoppingCar.getShoppingCarInstance().getShoppingCar();
                     jList.setListData(mealsTemp);
-                    totalAmount.setText("购物车总数为：" + ShoppingCar.getShoppingCarInstance().getTotalPrice());
+                    totalAmount.setText("购物车总数为：" + ShoppingCar.getShoppingCarInstance().getAmount());
                     totalPrice.setText("当前总共价格为：" + ShoppingCar.getShoppingCarInstance().getTotalPrice() + "￥");
                     new MessageView("删除购物车", "删除成功");
                 } else {

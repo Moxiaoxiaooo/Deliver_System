@@ -199,6 +199,8 @@ public class EditMenuView extends JFrame {
                 ProductMenu target = jList.getSelectedValue();
                 if (target != null) {
                     CookUser.deleteProductMenu(target);
+                    ProductMenu[] temp = CookUser.getCookMenu(id);
+                    jList.setListData(temp);
                 } else {
                     new MessageView("删除商品", "请选中商品");
                 }
