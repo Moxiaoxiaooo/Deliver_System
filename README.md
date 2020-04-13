@@ -16,7 +16,7 @@
     DriverName=com.mysql.jdbc.Driver
     Url=jdbc:mysql://localhost:3306/deliver_system?useSSL=false
     UserName=root
-    Password=123456
+    Password=fuck0754110
     ~~~
 
     你所需要修改的是Password=之后的内容，输入数据库的密码即可
