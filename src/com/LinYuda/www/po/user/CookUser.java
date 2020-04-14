@@ -232,8 +232,15 @@ public class CookUser {
             //获取要修改的字段
             switch (targetField) {
                 case 1: {
-                    updateSql = "update t_menu set amount = ? where id = ? ";
-                    break;
+                    if (value instanceof Long) {
+                        long temp = (long) value;
+                        if (temp < 0) {
+                            throw new IllegalNumberException("数字输入错误");
+                        } else {
+                            updateSql = "update t_menu set amount = ? where id = ? ";
+                            break;
+                        }
+                    }
                 }
                 case 2: {
                     updateSql = "update t_menu set meal_name = ? where id = ? ";
@@ -244,16 +251,39 @@ public class CookUser {
                     break;
                 }
                 case 4: {
-                    updateSql = "update t_menu set price = ? where id = ? ";
-                    break;
+                    if (value instanceof Double) {
+                        double temp = (double) value;
+                        if (temp < 0) {
+                            throw new IllegalNumberException("数字输入错误");
+                        } else {
+                            updateSql = "update t_menu set price = ? where id = ? ";
+                            break;
+                        }
+                    }
+
                 }
                 case 5: {
-                    updateSql = "update t_menu set window_no = ? where id = ? ";
-                    break;
+                    if (value instanceof Integer) {
+                        int temp = (int) value;
+                        if (temp < 0) {
+                            throw new IllegalNumberException("数字输入错误");
+                        } else {
+                            updateSql = "update t_menu set window_no = ? where id = ? ";
+                            break;
+                        }
+                    }
                 }
                 case 6: {
-                    updateSql = "update t_menu set cook_no = ? where id = ? ";
-                    break;
+                    if (value instanceof Long) {
+                        long temp = (long) value;
+                        if (temp < 0) {
+                            throw new IllegalNumberException("数字输入错误");
+                        } else {
+                            updateSql = "update t_menu set cook_no = ? where id = ? ";
+                            break;
+                        }
+                    }
+
                 }
                 default: {
                     throw new SQLException();
@@ -277,6 +307,8 @@ public class CookUser {
 
         } catch (SQLException e) {
             new SQLExceptionView();
+        } catch (IllegalNumberException e) {
+            new MessageView("输入错误", "输入的数字有误，请重新输入");
         } finally {
             JDBCUtil.closeConnection(connection, preparedStatement);
         }
@@ -334,7 +366,7 @@ public class CookUser {
             preparedStatement = connection.prepareStatement(deleteSql);
             preparedStatement.setLong(1, target.id);
             int rows = preparedStatement.executeUpdate();
-            if (rows != 0) {
+            if (rows >= 0) {
                 //再删除本体
                 deleteSql = "delete from t_menu where id = ?";
                 preparedStatement = connection.prepareStatement(deleteSql);
